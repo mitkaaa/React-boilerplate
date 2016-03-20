@@ -17,13 +17,13 @@ var autoprefixer        = require('autoprefixer'),
             modulesDirectories: [
                 'node_modules',
                 config.PATH.FRONTSIDE + '/components'
-                //config.PATH.VENDOR
                 ],
             extensions: ['', '.jsx', '.js']
         },
         
         output: {
-            filename: config.PATH.STATIC+'/js/bundle.js'
+            path: config.PATH.STATIC,
+            filename: '/js/bundle.js'
         },
         
         module: {
@@ -32,7 +32,7 @@ var autoprefixer        = require('autoprefixer'),
                     test: /\.js[x]?$/,
                     exclude: /node_modules/,
                     loaders: ['babel-loader']
-                }, 
+                },
                 {
                     test:  /\.css$/,
                     exclude: /node_modules/,
@@ -47,7 +47,7 @@ var autoprefixer        = require('autoprefixer'),
                 precss,
                 vars({
                     variables: function () {
-                            return require(config.PATH.FRONTSIDE + '/../style/variable.js');
+                            return require(config.PATH.FRONTSIDE + '/../style/variable.js')
                         }
                     }),
                 calc,
@@ -59,4 +59,3 @@ var autoprefixer        = require('autoprefixer'),
             new webpack.optimize.UglifyJsPlugin()
         ]
     }
-    

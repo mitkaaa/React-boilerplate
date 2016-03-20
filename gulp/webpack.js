@@ -22,8 +22,10 @@ module.exports = function (gulp) {
         server.instance = new WebpackDevServer(webpack(webpackConfig), {
             contentBase: config.PATH.STATIC,
             
+            build: true,
+
             hot: true,
-            quiet: false,
+            quiet: true,
             noInfo: false,
             lazy: true,
             filename: 'bundle.js',
@@ -42,16 +44,14 @@ module.exports = function (gulp) {
                 throw new gutil.PluginError('Webpack', err)
             }
 
-            gutil.log(gutil.colors.cyan('[Webpack]'), 'server avaliable at http://localhost:'+webpackConfig.port+'/')
+            gutil.log(gutil.colors.cyan('[Webpack]'), 'server avaliable at http://localhost:' + webpackConfig.port + '/')
             
         })
     })
-    
-    
 
     gulp.task('webpack:production', function (callback) {
-        webpack(webpackConfigProduction, function(err, stats) {
-            if(err) throw new gutil.PluginError("webpack", err);
+        webpack(webpackConfigProduction, function (err, stats) {
+            if (err) throw new gutil.PluginError('webpack', err)
             gutil.log('[Webpack]', 'Output:\n' + stats.toString({
                 chunks: false,
                 colors: true

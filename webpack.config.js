@@ -10,7 +10,8 @@ var _ = require('lodash'),
 
 module.exports = _.merge(webpackConfig, {
     output: {
-        filename: config.PATH.STATIC + '/js/bundle.js',
+        path: config.PATH.STATIC,
+        filename: '/js/bundle.js',
         publicPath: 'http://localhost:' + port + '/'
     },
 
