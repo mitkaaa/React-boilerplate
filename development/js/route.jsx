@@ -6,8 +6,8 @@ import { Route, IndexRoute } from 'react-router'
 import Main from './modules/main/index.jsx'
 
 export default (
-    <Route path="/" component={Main.Template}>
-        <IndexRoute component={Main.viewMain} />
+    <Route path="/" component={ Main.Template }>
+        <IndexRoute component={ Main.viewMain } />
 
     </Route>
 )

@@ -6,7 +6,7 @@ var sequence = require('run-sequence')
 var path = require('path')
 
 gulp.config = {
-    dest: path.resolve('./target/assets')
+    dest: config.PATH.STATIC
 }
 
 require('./gulp/webpack')(gulp)

@@ -11,7 +11,7 @@ module.exports = function (gulp) {
     var server = {}
     
     gulp.task('webpack', function () {
-        //webpackConfig.entry = webpackConfig.entry.concat(['webpack-dev-server/client?http://localhost:' + webpackConfig.port + '/', 'webpack/hot/dev-server'])
+        // webpackConfig.entry = webpackConfig.entry.concat(['webpack-dev-server/client?http://localhost:' + webpackConfig.port + '/', 'webpack/hot/dev-server'])
         webpackConfig.watch = true
         webpackConfig.plugins = webpackConfig.plugins.concat([
             new webpack.SourceMapDevToolPlugin(),
@@ -21,21 +21,20 @@ module.exports = function (gulp) {
 
         server.instance = new WebpackDevServer(webpack(webpackConfig), {
             contentBase: config.PATH.STATIC,
-            //publicPath: 'http://localhost:4242/target/assets/',
-            stats: {
-                chunks: false,
-                colors: true
+            
+            hot: true,
+            quiet: false,
+            noInfo: false,
+            lazy: true,
+            filename: "bundle.js",
+            watchOptions: {
+                aggregateTimeout: 300,
+                poll: 1000
             },
             headers: {
-                'Access-Control-Allow-Origin': '*',
-                'Expires': '-1',
-                'Cache-Control': 'private, no-cache, no-store, must-revalidate',
-                'Pragma': 'no-cache'
+                'Access-Control-Allow-Origin': '*'
             },
-            
-            lazy: true,
-            
-            hot: true
+            stats: { colors: true, chunks: false }
         })
             
         server.instance.listen(webpackConfig.port, function (err) {

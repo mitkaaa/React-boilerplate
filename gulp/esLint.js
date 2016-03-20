@@ -10,7 +10,13 @@ module.exports = function (gulp) {
         .pipe(eslint())
         .pipe(eslint.result(function (result) {
             var msg = result.messages[0]
-            if (msg) gutil.log('[ESLint]', result.filePath,  gutil.colors.black.bgYellow.bold(msg.message), ' -- line ['+msg.line+'] -- column ['+msg.line+']', '[message] - '+ gutil.colors.black.bgYellow.bold(" " + result.messages.length + " "))
+            if (msg) gutil.log(
+                gutil.colors.cyan('[ESLint]'),
+                result.filePath,
+                gutil.colors.black.bgYellow.bold(msg.message),
+                ' -- line ['+msg.line+'] -- column ['+msg.line+']',
+                '[message] - '+ gutil.colors.black.bgYellow.bold(" " + result.messages.length + " ")
+                )
         }))
     })
     

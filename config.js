@@ -5,7 +5,7 @@ module.exports = {
 		APP: __dirname,
 		// API: __dirname+'/API',
 		// VENDOR: __dirname+'/vendor',
-		// BACKSIDE: __dirname+'/Back-side',
+		BACKSIDE: __dirname+'/server',
 		FRONTSIDE: __dirname+'/development/js',
 		STATIC: __dirname+'/static'
 	},

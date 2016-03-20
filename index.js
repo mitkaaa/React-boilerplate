@@ -1,11 +1,7 @@
-'use strict'
+SIDE = 'server'
 
-var http = require('http');
-var fs = require('fs');
-var port = 8081
+var config = require('./config')
+require(config.PATH.BACKSIDE+'/libs/resolve')(require('./webpack.config.js').resolve.modulesDirectories)
 
-http.createServer(function (req, res) {
-    console.log('Ready on port '+ port)
-    res.writeHead(200, {'Content-Type': 'text/plain'});
-    res.end('<h2>Ready</h2>');
-}).listen(port);
+require('babel-core/register')
+require('./server')

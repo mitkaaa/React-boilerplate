@@ -16,8 +16,8 @@ var autoprefixer        = require('autoprefixer'),
         resolve : {
             modulesDirectories: [
                 'node_modules',
-                config.PATH.FRONTSIDE + '/components',
-                config.PATH.VENDOR
+                config.PATH.FRONTSIDE + '/components'
+                //config.PATH.VENDOR
                 ],
             extensions: ['', '.jsx', '.js']
         },
@@ -43,15 +43,15 @@ var autoprefixer        = require('autoprefixer'),
         
         postcss: function () {
             return [
-            autoprefixer,
-            precss,
-            vars({
-                variables: function () {
-                        return require(config.PATH.FRONTSIDE + '/../style/variable.js');
-                    }
-                }),
-            calc,
-            size
+                autoprefixer,
+                precss,
+                vars({
+                    variables: function () {
+                            return require(config.PATH.FRONTSIDE + '/../style/variable.js');
+                        }
+                    }),
+                calc,
+                size
             ]
         },
         
