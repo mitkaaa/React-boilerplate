@@ -2,12 +2,9 @@ import config from '../../config'
 
 import React from 'react'
 import { renderToString, renderToStaticMarkup } from 'react-dom/server'
-import { match, RoutingContext } from 'react-router'
+import { match, RouterContext } from 'react-router'
 import DocumentTitle from 'react-document-title'
-import { createStore, combineReducers, applyMiddleware } from 'redux'
 import { Provider } from 'react-redux'
-
-import createLocation            from 'history/lib/createLocation'
 
 import fetchComponentData from './fetchComponentData'
 
@@ -15,13 +12,13 @@ import { store } from '__data__'
 
 // import mongoose from 'mongoose'
 
-const routes = require(config.PATH.FRONTSIDE + '/route.jsx')
+const routes = require(`${config.PATH.FRONTSIDE}/route.jsx`).default
 
 
 export default (req, res) => {
-    const location = createLocation(req.url).pathname
+    const location = req.url
     match({ routes, location }, (error, redirectLocation, renderProps) => {
-    console.log(routes, location, error, redirectLocation, renderProps)
+    // console.log(location, error, redirectLocation, renderProps)
         if (error) {
             res.status(500).send(error.message)
         } else if (redirectLocation) {
@@ -42,22 +39,23 @@ export default (req, res) => {
             //     User.load(options, callback)
             // }
             
-            fetchComponentData(store.dispatch, renderProps.components, renderProps.params)
-                .then(() => {
+            // fetchComponentData(store.dispatch, renderProps.components, renderProps.params)
+            //     .then(() => {
                     // userAuth((err, user) => {
-                    const InitialView = (<Provider store={ store }><RoutingContext {...renderProps} /></Provider>)
+                    const InitialView = (<Provider store={ store }><RouterContext {...renderProps} /></Provider>)
                     const componentHTML = renderToString(InitialView)
                     let state = store.getState()
                     // state.user = user || {}
                     res.status(200).render('index', {
+                        url: process.env.NODE_ENV === 'development' ? 'http://localhost:' + config.webDevServerPort : '',
                         app: componentHTML,
                         title: DocumentTitle.rewind(),
                         initialState: state
                     })
 
                     // })
-                })
-                .catch((err) => res.end(err.message))
+                // })
+                // .catch((err) => res.end(err.message))
             
             
         } else {

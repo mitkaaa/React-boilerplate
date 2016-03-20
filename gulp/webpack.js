@@ -26,15 +26,15 @@ module.exports = function (gulp) {
             quiet: false,
             noInfo: false,
             lazy: true,
-            filename: "bundle.js",
-            watchOptions: {
-                aggregateTimeout: 300,
-                poll: 1000
-            },
+            filename: 'bundle.js',
+            // watchOptions: {
+            //     aggregateTimeout: 300,
+            //     poll: 1000
+            // },
             headers: {
                 'Access-Control-Allow-Origin': '*'
             },
-            stats: { colors: true, chunks: false }
+            stats: { colors: true, chunks: true }
         })
             
         server.instance.listen(webpackConfig.port, function (err) {
@@ -54,7 +54,7 @@ module.exports = function (gulp) {
             if(err) throw new gutil.PluginError("webpack", err);
             gutil.log('[Webpack]', 'Output:\n' + stats.toString({
                 chunks: false,
-			    colors: true
+                colors: true
             }))
         })
     })

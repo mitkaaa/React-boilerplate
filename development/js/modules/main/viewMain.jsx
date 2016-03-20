@@ -1,17 +1,18 @@
 import React from 'react'
+import { Link } from 'react-router'
 
 export default class Main extends React.Component {
     // Constructor
-    constructor(props) {
-        super(props);
-        this.state = {name: props.name};
+    constructor (props) {
+        super(props)
     }
     
-    render() {
+    render () {
         return (
             <div>
-                <h2>Главная страница 96aa234234f</h2>
+                <h2>Главная страница</h2>
+                <Link to="/test">TEST</Link>
             </div>
-        );
+        )
     }
 }
