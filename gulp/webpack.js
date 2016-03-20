@@ -22,7 +22,7 @@ module.exports = function (gulp) {
         new WebpackDevServer(webpack(webpackConfig), {
             contentBase: config.PATH.STATIC,
 
-            //publicPath: './',
+            // publicPath: './',
             hot: true,
             quiet: false,
             noInfo: false,
