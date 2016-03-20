@@ -10,7 +10,7 @@ export default class Main extends React.Component {
     render () {
         return (
             <div>
-                <h2>Главная страница 123123qq</h2>
+                <h2>Ра зра зра</h2>
                 <Link to="/test">TEST</Link>
             </div>
         )

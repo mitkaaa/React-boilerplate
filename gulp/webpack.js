@@ -11,7 +11,7 @@ module.exports = function (gulp) {
     var server = {}
     
     gulp.task('webpack', function () {
-        // webpackConfig.entry = webpackConfig.entry.concat(['webpack-dev-server/client?http://localhost:' + webpackConfig.port + '/', 'webpack/hot/dev-server'])
+        webpackConfig.entry = webpackConfig.entry.concat(['webpack-dev-server/client?http://localhost:' + webpackConfig.port + '/', 'webpack/hot/dev-server'])
         webpackConfig.watch = true
         webpackConfig.plugins = webpackConfig.plugins.concat([
             new webpack.SourceMapDevToolPlugin(),
@@ -19,27 +19,32 @@ module.exports = function (gulp) {
         ])
         webpackConfig.devtool = 'eval'
 
-        server.instance = new WebpackDevServer(webpack(webpackConfig), {
+        new WebpackDevServer(webpack(webpackConfig), {
             contentBase: config.PATH.STATIC,
-            
-            build: true,
 
+            //publicPath: './',
             hot: true,
-            quiet: true,
+            quiet: false,
             noInfo: false,
-            lazy: true,
-            filename: 'bundle.js',
-            // watchOptions: {
-            //     aggregateTimeout: 300,
-            //     poll: 1000
-            // },
-            headers: {
-                'Access-Control-Allow-Origin': '*'
-            },
-            stats: { colors: true, chunks: true }
-        })
+            historyApiFallback: true,
             
-        server.instance.listen(webpackConfig.port, function (err) {
+            // build: true,
+
+            // hot: true,
+            // quiet: true,
+            // noInfo: false,
+            // lazy: true,
+            // filename: 'bundle.js',
+            // // watchOptions: {
+            // //     aggregateTimeout: 300,
+            // //     poll: 1000
+            // // },
+            // headers: {
+            //     'Access-Control-Allow-Origin': '*'
+            // },
+            stats: { colors: true, chunks: false }
+        })
+        .listen(webpackConfig.port, '0.0.0.0', function (err) {
             if (err) {
                 throw new gutil.PluginError('Webpack', err)
             }
