@@ -1,9 +1,9 @@
 'use strict'
 
-var config = require("./config")
-var gulp = require('gulp')
-var sequence = require('run-sequence')
-var path = require('path')
+var config = require('./config'),
+    gulp = require('gulp'),
+    sequence = require('run-sequence'),
+    path = require('path')
 
 gulp.config = {
     dest: config.PATH.STATIC
@@ -18,7 +18,6 @@ require('./gulp/esLint')(gulp)
 //require('./gulp/karma')(gulp)
 
 gulp.task('default', [
-    'lint',
     // 'sprite:watch',
     // 'less:theme:bootstrap',
     // 'copy:favicon',
@@ -26,17 +25,18 @@ gulp.task('default', [
     // 'copy:utils',
     // 'copy:fonts'
 ], function (callback) {
-    
-    gulp.watch([config.PATH.FRONTSIDE + '/**/*.js', config.PATH.FRONTSIDE + '**/*.jsx'], ['lint'])
-    sequence(
-        'webpack',
-        callback
-    )
-})
-
-gulp.task('production', [], function (callback) {
-    sequence(
-        'webpack:production',
-        callback
-    )
+    if (process.env.NODE_ENV === 'development') {
+        gulp.watch([config.PATH.FRONTSIDE + '/**/*.js', config.PATH.FRONTSIDE + '**/*.jsx'], ['lint'])
+        sequence(
+            'lint',
+            'webpack',
+            callback
+        )
+    }
+    else {
+        sequence(
+            'webpack:production',
+            callback
+        )
+    }
 })
