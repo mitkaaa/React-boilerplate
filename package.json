@@ -43,7 +43,6 @@
     "morgan": "^1.7.0",
     "postcss": "^5.0.19",
     "postcss-calc": "^5.2.0",
-    "postcss-loader": "^0.8.2",
     "postcss-simple-vars": "^1.2.0",
     "postcss-size": "^1.0.0",
     "precss": "^1.4.0",
@@ -60,6 +59,7 @@
     "webpack-dev-server": "^1.14.1"
   },
   "devDependencies": {
+    "babel-plugin-add-module-exports": "^0.1.2",
     "babel-preset-react": "^6.5.0",
     "css-loader": "^0.23.1",
     "postcss-loader": "^0.8.2",

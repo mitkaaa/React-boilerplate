@@ -1,124 +1,33 @@
 @import url(http://fonts.googleapis.com/css?family=PT+Sans:400,700|PT+Sans+Narrow&subset=latin,cyrillic);
 
 $width-logo: 250px;
-$color: #f0f0f0;/*#E13515;*/
+$color: #f0f0f0;
 $color-red: #b03c32;
 $color-red-hover: #d43a2c;
-$color-beige: #ebe9e3;
+$color-beige: #FFF;
 
 body{
     background: $color-beige;
+    color: #FFF;
 }
 
 .wrapper{
-    width: 100%;
-    max-width: 1100px;
-    margin:0 auto;
-    &-top{
-        background: #b03c32;
-        color: #FFF;
-        height: 50px;
-        overflow: hidden;
-        position: absolute;
-        width: 100%;
-        top: 0;
-        z-index: 5;
-        left:0;
-        font-family: 'PT Sans';
-        a{
-            font-family: 'PT Sans';
-            color: #FFF;
-        }
-    }
-    &-menu{
-        list-style:none;
-        margin: 0 auto;
+    background: linear-gradient(45deg, rgba(226,68,68,1) 0%,rgba(6,109,171,1) 100%);
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    color: #FFF;
+    
+    &-content {
+        height: 100%;
+        display: flex;
+        align-items: center;
         text-align: center;
-        padding: 0;
-        width: 100%;
-        padding-top: 7px;
-        li {
-            padding: 0 2px;
-            display: inline-block;
-            float: none;
-        }
-        a.btn-link{
-            color:#FFF;
-            font-size: 14px;
-            font-weight: 700;
-            text-decoration: none;
-            text-transform: uppercase;
-            &:hover,&:focus{
-                color:#FFF;
-                opacity: 0.8;
-            }
-            &:active{
-                color:#FFF;
-                opacity: 0.9;
-            }
-        }
-    }
-    &-header{
-        background: #FFF;    
-        margin-top: 50px;
-        left:0;
-        position:absolute;
-        height: calc(150+40)px;
-        width:100%;
-        .logo{
-            margin-top:20px;
-            width:$width-logo;
-            height: 150px;
-            background: $color; /*#E13515;*/
-            display:block;
-            text-align:center;
-            margin:0 auto;
-            position: absolute;
-            margin-left: calc($width-logo/2*(-1));
-            left:50%;
-            top:20px;
-        }
-    }
-    &-toolbar{
-        background: $color-beige;
-        height:60px;
-        margin-top:65px;
-        .block-left, .block-right{
-            width:50%;
-            position:relative;
-        }
-        .block-left{
-            float:left;
-            padding-right:calc($width-logo/2);
-        }
-        .block-right{
-            float:right;
-            padding-left:calc($width-logo/2);
-        }
-        .btn-sign{
-            background: $color;
-            padding: 18px 17px;
-            background: $color-red;
-            float: right;
-            color: #FFF;
-            height: 60px;
-            border-radius: 0;
-            text-transform: uppercase;
-            font-family: 'PT Sans';
-            font-weight: 700;
-            &:hover, &:focus{
-                background: $color-red-hover;
-            }
-            &:active{
-                background: $color-red-hover;
-                opacity: 0.9;
-            }
-        }
-    }
-    &-content{
-        padding-top: 190px;
-        .padding-top{
-           padding-top:20px; 
+        &__number {    
+            margin: 0 auto;
+            font-size: 10em;
         }
     }
 }

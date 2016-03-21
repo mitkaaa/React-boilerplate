@@ -12,13 +12,12 @@ import { store } from '__data__'
 
 // import mongoose from 'mongoose'
 
-const routes = require(`${config.PATH.FRONTSIDE}/route.jsx`).default
+const routes = require(`${config.PATH.FRONTSIDE}/route.jsx`)
 
 
 export default (req, res) => {
     const location = req.url
     match({ routes, location }, (error, redirectLocation, renderProps) => {
-    // console.log(location, error, redirectLocation, renderProps)
         if (error) {
             res.status(500).send(error.message)
         } else if (redirectLocation) {
@@ -47,7 +46,7 @@ export default (req, res) => {
                     let state = store.getState()
                     // state.user = user || {}
                     res.status(200).render('index', {
-                        url: process.env.NODE_ENV === 'development' ? 'http://localhost:' + config.webDevServerPort : '',
+                        url: process.env.NODE_ENV === 'development' ? 'http://' + req.headers.host.split(':')[0] + ':' + config.webDevServerPort : '',
                         app: componentHTML,
                         title: DocumentTitle.rewind(),
                         initialState: state

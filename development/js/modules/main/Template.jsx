@@ -27,30 +27,8 @@ class Template extends React.Component {
     }
     render() {
         return (
-            <div className="layer">
-                <header>
-                    <div className="content-wrapper">
-                        <Col className="layer__col" xs={10}>
-                            <Link to="/" className="layer__logo"></Link>
-                            { /* <Menu /> */ }
-                        </Col>
-                        <Col className="layer__col" xs={2}>
-                            <div className="layer__sign">
-                                { /* <Sign user={this.props.user} /> */ }
-                            </div>
-                        </Col>
-                    </div>
-                </header>   
-                
-                <div className="content-wrapper">
-                    { this.props.children }
-                </div>
-                
-                <footer>
-                    <div className="content-wrapper">
-                        <Col className="layer__col" xs={12}>Футер</Col>
-                    </div>
-                </footer>
+            <div className="wrapper">
+                { this.props.children }
             </div>
         )
     }

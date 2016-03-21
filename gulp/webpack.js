@@ -11,7 +11,7 @@ module.exports = function (gulp) {
     var server = {}
     
     gulp.task('webpack', function () {
-        webpackConfig.entry = webpackConfig.entry.concat(['webpack-dev-server/client?http://localhost:' + webpackConfig.port + '/', 'webpack/hot/dev-server'])
+        webpackConfig.entry = webpackConfig.entry.concat(['webpack-dev-server/client?' + webpackConfig.hostname, 'webpack/hot/dev-server'])
         webpackConfig.watch = true
         webpackConfig.plugins = webpackConfig.plugins.concat([
             new webpack.SourceMapDevToolPlugin(),
@@ -44,12 +44,12 @@ module.exports = function (gulp) {
             // },
             stats: { colors: true, chunks: false }
         })
-        .listen(webpackConfig.port, '0.0.0.0', function (err) {
+        .listen(webpackConfig.port, function (err) {
             if (err) {
                 throw new gutil.PluginError('Webpack', err)
             }
 
-            gutil.log(gutil.colors.cyan('[Webpack]'), 'server avaliable at http://localhost:' + webpackConfig.port + '/')
+            gutil.log(gutil.colors.cyan('[Webpack]'), 'server avaliable at ' + webpackConfig.hostname)
             
         })
     })
