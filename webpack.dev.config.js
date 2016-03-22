@@ -1,7 +1,7 @@
 "use strict"
 
 var config = require('./config'),
-    webpackConfig = require('./webpack.production.config'),
+    webpackConfig = require('./webpack.prod.config'),
     os = require('os')
 
 var _ = require('lodash'),
@@ -13,7 +13,7 @@ var ip = os.networkInterfaces().eth0[0] ? os.networkInterfaces().eth0[0].address
     hostname = 'http://' + host + ':' + port + '/'
 
 
-module.exports = _.merge(webpackConfig, {
+module.exports = _.merge({}, webpackConfig, {
     output: {
         path: config.PATH.STATIC,
         filename: 'js/bundle.js',
@@ -37,5 +37,5 @@ module.exports = _.merge(webpackConfig, {
                 loader: 'style!css!postcss-loader'
             }
         ]
-    },
+    }
 })

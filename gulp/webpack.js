@@ -1,7 +1,7 @@
 'use strict'
 
-var webpackConfig = require('../webpack.config'),
-    webpackConfigProduction = require('../webpack.production.config'),
+var webpackConfig = require('../webpack.dev.config'),
+    webpackConfigProduction = require('../webpack.prod.config'),
     config = require('../config'),
     webpack = require('webpack'),
     gutil = require('gulp-util'),

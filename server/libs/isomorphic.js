@@ -46,6 +46,7 @@ export default (req, res) => {
                     let state = store.getState()
                     // state.user = user || {}
                     res.status(200).render('index', {
+                        production: process.env.NODE_ENV === 'production',
                         url: process.env.NODE_ENV === 'development' ? 'http://' + req.headers.host.split(':')[0] + ':' + config.webDevServerPort : '',
                         app: componentHTML,
                         title: DocumentTitle.rewind(),

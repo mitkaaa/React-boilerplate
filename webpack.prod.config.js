@@ -7,10 +7,10 @@ var autoprefixer        = require('autoprefixer'),
     precss              = require('precss'),
     vars                = require('postcss-simple-vars'),
     calc                = require('postcss-calc'),
-    size                = require('postcss-size')
+    size                = require('postcss-size'),
+    ExtractTextPlugin   = require('extract-text-webpack-plugin')
     
     module.exports = {
-        devtool: 'eval',
         entry: [config.PATH.FRONTSIDE + '/main.jsx'],
         
         resolve : {
@@ -33,10 +33,10 @@ var autoprefixer        = require('autoprefixer'),
                     exclude: /node_modules/,
                     loaders: ['babel-loader']
                 },
-                {
-                    test:  /\.css$/,
+                                {
+                    test: /\.css$/,
                     exclude: /node_modules/,
-                    loader: "style!css!postcss-loader"
+                    loader: ExtractTextPlugin.extract('style-loader', 'css-loader!postcss-loader')
                 }
             ]
         },
@@ -56,6 +56,10 @@ var autoprefixer        = require('autoprefixer'),
         },
         
         plugins: [
-            new webpack.optimize.UglifyJsPlugin()
+            new webpack.optimize.UglifyJsPlugin(),
+            new ExtractTextPlugin('/css/main.css'),
+            new webpack.DefinePlugin({
+                'process.env.NODE_ENV': '"production"'
+            })
         ]
     }
