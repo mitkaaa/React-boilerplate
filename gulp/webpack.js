@@ -42,6 +42,7 @@ module.exports = function (gulp) {
             // headers: {
             //     'Access-Control-Allow-Origin': '*'
             // },
+            
             stats: { colors: true, chunks: false }
         })
         .listen(webpackConfig.port, function (err) {
