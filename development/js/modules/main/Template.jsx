@@ -1,4 +1,5 @@
 import './css/normalize.css'
+import './css/grd.css'
 import './css/template.css'
 
 import React from 'react'
