@@ -1,4 +1,5 @@
-import './template.css'
+import './css/normalize.css'
+import './css/template.css'
 
 import React from 'react'
 import { connect } from 'react-redux'
