@@ -24,4 +24,4 @@ node_modules/*
 .c9/*
 
 static/js/*
-#static/css/*
+static/css/*

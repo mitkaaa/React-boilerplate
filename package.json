@@ -50,7 +50,6 @@
     "postcss-size": "^1.0.0",
     "precss": "^1.4.0",
     "react": "^0.14.7",
-    "react-bootstrap": "^0.28.3",
     "react-document-title": "^2.0.1",
     "react-dom": "^0.14.7",
     "react-redux": "^4.4.1",
