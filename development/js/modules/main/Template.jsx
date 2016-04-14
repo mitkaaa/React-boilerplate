@@ -1,9 +1,4 @@
-if(SIDE=='client'){
-    // Стили только для клиента и только require :(
-    require('./template.css')
-}
-
-// import './template.css'
+import './template.css'
 
 import React from 'react'
 import { connect } from 'react-redux'

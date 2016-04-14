@@ -52,7 +52,11 @@ var autoprefixer        = require('autoprefixer'),
                         }
                     }),
                 calc,
-                size
+                size,
+                postcssSVG({
+                    paths: config.PATH.FRONTSIDE + '/../style/icons',
+                    defaults: "[fill]: #333"
+                })
             ]
         },
         
@@ -61,10 +65,6 @@ var autoprefixer        = require('autoprefixer'),
             new ExtractTextPlugin('/css/main.css'),
             new webpack.DefinePlugin({
                 'process.env.NODE_ENV': '"production"'
-            }),
-            postcssSVG({
-                paths: config.PATH.FRONTSIDE + '/../icons',
-                defaults: "[fill]: #000000"
-              })
+            })
         ]
     }
