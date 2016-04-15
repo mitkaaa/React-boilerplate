@@ -1,3 +1,4 @@
+/* eslint-disable */
 var config = require('./config')
 require ('./server/libs/resolve')(require('./webpack.prod.config.js').resolve.modulesDirectories)
 

@@ -1,4 +1,12 @@
 {
   "presets": ["es2015", "react"],
-  "plugins": ["add-module-exports", "transform-es3-property-literals", "transform-es3-member-expression-literals", "transform-es5-property-mutators", "syntax-class-properties", "transform-object-rest-spread", "transform-class-properties"]
+  "plugins": [
+    "add-module-exports",
+    "transform-es3-property-literals",
+    "transform-es3-member-expression-literals",
+    "transform-es5-property-mutators",
+    "syntax-class-properties",
+    "transform-object-rest-spread",
+    "transform-class-properties",
+    "syntax-decorators"]
 }

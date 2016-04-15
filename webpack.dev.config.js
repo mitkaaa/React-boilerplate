@@ -1,3 +1,5 @@
+/* eslint-disable */
+
 "use strict"
 
 var config = require('./config'),
@@ -5,11 +7,9 @@ var config = require('./config'),
     os = require('os')
 
 var _ = require('lodash'),
-    webpack = require('webpack'),
-    port = config.webDevServerPort
+    webpack = require('webpack')
 
-var ip = os.networkInterfaces().eth0[0] ? os.networkInterfaces().eth0[0].address : '0.0.0.0',
-    host = process.env.C9_HOSTNAME ? process.env.C9_HOSTNAME : 'localhost',
+var host = process.env.C9_HOSTNAME ? process.env.C9_HOSTNAME : `localhost:${config.port}`,
     hostname = 'http://' + host + '/'
 
 
@@ -20,8 +20,6 @@ module.exports = _.merge({}, webpackConfig, {
         publicPath: hostname
     },
 
-    ip: ip,
-    port: port,
     hostname: hostname,
 
     module: {

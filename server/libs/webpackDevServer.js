@@ -7,8 +7,10 @@ import webpack from 'webpack'
 import webpackConfig from '../../webpack.dev.config'
 
 
-webpackConfig.entry = webpackConfig.entry.concat(['webpack-hot-middleware/client?' + webpackConfig.hostname, 'webpack/hot/dev-server'])
-webpackConfig.watch = true
+const entry = [`webpack-hot-middleware/client?${webpackConfig.hostname}`]
+
+webpackConfig.entry = webpackConfig.entry.concat(entry)
+// webpackConfig.watch = true
 webpackConfig.plugins = webpackConfig.plugins.concat([
     new webpack.SourceMapDevToolPlugin(),
     new webpack.HotModuleReplacementPlugin(),
@@ -35,10 +37,10 @@ const webpackDev = webpackDevMiddleware(compiler, {
     // noInfo: false,
     // lazy: true,
     // filename: 'bundle.js',
-    // // watchOptions: {
-    // //     aggregateTimeout: 300,
-    // //     poll: 1000
-    // // },
+    watchOptions: {
+        aggregateTimeout: 300,
+        poll: 1000
+    },
     // headers: { "Access-Control-Allow-Origin": "*" },
     stats: { colors: true, chunks: false }
 })
