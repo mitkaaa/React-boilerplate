@@ -8,7 +8,6 @@ module.exports = {
         STATIC: __dirname + '/static'
     },
     
-    host: os.hostname(),
     port: 8080
 
 }
