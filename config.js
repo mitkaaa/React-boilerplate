@@ -1,5 +1,3 @@
-var os = require('os')
-
 module.exports = {
     PATH: {
         APP: __dirname,
