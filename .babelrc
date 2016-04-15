@@ -1,5 +1,5 @@
 {
-  "presets": ["es2015", "react"],
+  "presets": ["es2015", "stage-0", "react"],
   "plugins": [
     "add-module-exports",
     "transform-es3-property-literals",
@@ -8,5 +8,6 @@
     "syntax-class-properties",
     "transform-object-rest-spread",
     "transform-class-properties",
-    "syntax-decorators"]
+    "syntax-decorators",
+    "transform-decorators-legacy"]
 }
