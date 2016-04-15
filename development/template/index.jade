@@ -9,13 +9,11 @@ html()
                 loader.className += " hide";
                 setTimeout(function(){
                     loader.parentNode.removeChild(loader);
-                },500);
+                }, 500);
             }
             window.__INITIAL_STATE__ = !{JSON.stringify(initialState)}
         if production
             link(rel="stylesheet" type="text/css" href="/css/main.css")
-        // link(rel="stylesheet" type="text/css" href="/css/loader.css")
-        // link(rel="stylesheet" type="text/css" href="/css/theme.css")
     body(onload="loader()")
         #loader.loading
             .loader
