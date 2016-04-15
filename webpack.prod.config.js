@@ -64,7 +64,10 @@ var autoprefixer        = require('autoprefixer'),
             new webpack.optimize.UglifyJsPlugin(),
             new ExtractTextPlugin('/css/main.css'),
             new webpack.DefinePlugin({
-                'process.env.NODE_ENV': '"production"'
+                'process.env': {
+                    BROWSER: JSON.stringify(true),
+                    NODE_ENV: JSON.stringify(process.env.NODE_ENV)
+                }
             })
         ]
     }

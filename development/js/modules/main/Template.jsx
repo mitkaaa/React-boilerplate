@@ -13,7 +13,7 @@ class Template extends React.Component {
 
     componentDidMount () {
         window.addEventListener('resize', () => {
-        }, true)    
+        }, true)
     }
     render() {
         return (

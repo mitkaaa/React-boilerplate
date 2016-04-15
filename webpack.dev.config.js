@@ -10,7 +10,7 @@ var _ = require('lodash'),
 
 var ip = os.networkInterfaces().eth0[0] ? os.networkInterfaces().eth0[0].address : '0.0.0.0',
     host = process.env.C9_HOSTNAME ? process.env.C9_HOSTNAME : 'localhost',
-    hostname = 'http://' + host + ':' + port + '/'
+    hostname = 'http://' + host + '/'
 
 
 module.exports = _.merge({}, webpackConfig, {

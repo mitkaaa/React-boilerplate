@@ -10,7 +10,7 @@
         arrowFunctions: true,
         blockBindings: true,
         classes: true,
-       defaultParams: true,
+        defaultParams: true,
         destructuring: true,
         jsx: true,
         modules: true,

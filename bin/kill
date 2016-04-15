@@ -1,2 +1,2 @@
 #!/bin/bash
-node_modules/forever/bin/forever stopall
+node_modules/pm2/bin/pm2 kill
