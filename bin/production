@@ -1,7 +1,0 @@
-#!/bin/bash
-
-export NODE_ENV=production
-npm i 
-node_modules/gulp/bin/gulp.js production
-node_modules/pm2/bin/pm2 kill
-node_modules/pm2/bin/pm2 start index.js -i 0

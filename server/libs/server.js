@@ -1,15 +1,13 @@
-import express from 'express'
-import bodyParser from 'body-parser'
-import methodOverride from 'method-override'
-import morgan from 'morgan'
+const express =  require('express')
+const bodyParser =  require('body-parser')
+const methodOverride =  require('method-override')
+const morgan =  require('morgan')
+const app = express()
+const cookieParser = require('cookie-parser')
 
-export default function (port = 3000, callback) {
+module.exports = (port, callback) => {
 
-    // let env = process.env.NODE_ENV || 'development'
-
-    const app = express()
-
-    if (process.argv.indexOf('-p') >= 0) {
+    if (process.argv.indexOf('-p') >= 0) { // -p 8080
         port = parseInt(process.argv[process.argv.indexOf('-p') + 1])
     }
 
@@ -18,7 +16,8 @@ export default function (port = 3000, callback) {
     app.use(bodyParser.json())
     app.use(methodOverride('_method'))
     app.use(methodOverride('X-HTTP-Method-Override'))
-    app.use(morgan('tiny'))
+    app.use(cookieParser())
+    process.env.NODE_ENV !== 'production' && app.use(morgan('tiny'))
 
     return callback(express, app)
 }

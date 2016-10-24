@@ -1,35 +1,34 @@
 'use strict'
 
-import http from 'http'
-import moment from 'moment'
-import server from './libs/server'
-import isomorphic from './libs/isomorphic'
-import config from '../config.js'
+require('babel-core/register')
+require('./resolve')
+require('./libs/mongoose')
+require.extensions['.css'] = () => '' // NO CSS!
 
-server(config.port, (express, app) => {
-    
-    if (process.env.NODE_ENV == 'development') {
-        const webpackDevServer = require('./libs/webpackDevServer')
-        app.use(webpackDevServer.webpackDev)
-        app.use(webpackDevServer.webpackHot)
-    }
-    
+const config = require('../config.js')
+const http = require('http')
+const moment = require('moment')
+const server = require('./libs/server')
+const routes = require('./routes')
+
+module.exports = server(config.port, (express, app) => {
+
     app.use(express.static(config.PATH.STATIC))
-
-    app.set('views', `${config.PATH.FRONTSIDE} /../template/`)
-    app.set('view engine', 'jade')
+    app.set('views', `${config.PATH.FRONTSIDE}/../template/`)
+    app.set('view engine', 'pug')
 
     http.createServer(app).listen(app.get('port'), () => {
         console.log(`Express server is listening on port in ${app.get('port')} mode`)
         console.log(`- NODE_ENV = ${process.env.NODE_ENV}`)
         console.log(`- PORT = ${app.get('port')}`)
-        console.log("- Date = " + moment().format("DD-MM-YYYY, h:MM:ss") + "\n")
+        console.log('- Date = ' + moment().format('DD-MM-YYYY, h:MM:ss') + '\n')
     })
-    
-    app.use(isomorphic)
 
+    routes.default(app)
+
+    app.use(require('./libs/react-router'))
+
+    if (!process.env.NODE_ENV) {
+        require('../webpack/development.profile.js')
+    }
 })
-
-export default {
-    server
-}

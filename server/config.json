@@ -1,0 +1,9 @@
+{
+    "PATH": {
+        "APPSERVER": "./APP-SERVER",
+        "APPFRONT": "./APP-FRONT",
+        "STATIC": "./static",
+        "TEMPLATE": "./template"
+    },
+    "PORT": "8080"
+}

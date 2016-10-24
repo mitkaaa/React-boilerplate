@@ -1,7 +1,0 @@
-#!/bin/bash
-
-export NODE_ENV=development
-npm i
-node_modules/pm2/bin/pm2 kill
-node_modules/pm2/bin/pm2 start index.js
-node_modules/pm2/bin/pm2 logs index

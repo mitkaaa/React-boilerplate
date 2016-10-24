@@ -1,21 +1,19 @@
-import config from '../../config'
+const config = require('../../config')
 
-import React from 'react'
-import { renderToString, renderToStaticMarkup } from 'react-dom/server'
-import { match, RouterContext } from 'react-router'
-import DocumentTitle from 'react-document-title'
-import { Provider } from 'react-redux'
+const React = require('react')
+const reactDom = require('react-dom/server') // { renderToString, renderToStaticMarkup }
+const reactRouter = require('react-router') // { match, RouterContext }
+const DocumentTitle = require('react-document-title')
+const reactRedux = require('react-redux') // { Provider }
+const fetchComponentData = require('./fetchComponentData')
 
-import fetchComponentData from './fetchComponentData'
+const store = require('store') // { store }
 
-import { store } from '__data__'
-
-// import mongoose from 'mongoose'
-
+console.log(reactDom);
 const routes = require(`${config.PATH.FRONTSIDE}/route.jsx`)
 
 
-export default (req, res) => {
+module.exports = (req, res) => {
     const location = req.url
     match({ routes, location }, (error, redirectLocation, renderProps) => {
         if (error) {
@@ -23,7 +21,7 @@ export default (req, res) => {
         } else if (redirectLocation) {
             res.redirect(302, redirectLocation.pathname + redirectLocation.search)
         } else if (renderProps) {
-            
+
             // function userAuth (callback) {
             //  if (!req.user) return callback(true, null)
 
@@ -34,10 +32,10 @@ export default (req, res) => {
             //             },
             //             select: 'name username email hashed_password'
             //         }
-                
+
             //     User.load(options, callback)
             // }
-            
+
             // fetchComponentData(store.dispatch, renderProps.components, renderProps.params)
             //     .then(() => {
                     // userAuth((err, user) => {
@@ -55,8 +53,8 @@ export default (req, res) => {
                     // })
                 // })
                 // .catch((err) => res.end(err.message))
-            
-            
+
+
         } else {
             res.status(404).send('Not found')
         }
