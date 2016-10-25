@@ -1,9 +1,9 @@
 /* eslint-disable */
 'use strict'
 
+require.extensions['.css'] = () => '' // NO CSS!
+
 const path = require('path')
-const config = require(path.join(__dirname, 'server', 'configuration'))()
-// require('babel-core/register')
 require(path.join(__dirname, 'server', 'libs', 'resolve'))
 require(path.join(__dirname, 'server', 'libs', 'mongoose'))
-require.extensions['.css'] = () => '' // NO CSS!
+require(path.join(__dirname, 'server'))
