@@ -1,52 +1,37 @@
 /* eslint-disable */
 "use strict"
 
-const path = require('path')
-const    config = require('../config')
-const    webpack = require('webpack')
+const path                = require('path')
+const config              = require('../server/configuration')
+const webpack             = require('webpack')
 
-const    autoprefixer        = require('autoprefixer')
-const    precss              = require('precss')
-const    vars                = require('postcss-simple-vars')
-const    calc                = require('postcss-calc')
-const    size                = require('postcss-size')
-const    postcssSVG          = require('postcss-svg')
-const    ExtractTextPlugin   = require('extract-text-webpack-plugin')
+const autoprefixer        = require('autoprefixer')
+const precss              = require('precss')
+const vars                = require('postcss-simple-vars')
+const calc                = require('postcss-calc')
+const size                = require('postcss-size')
+const postcssSVG          = require('postcss-svg')
+const ExtractTextPlugin   = require('extract-text-webpack-plugin')
 
 module.exports = {
     entry: {
-        // vendor: [
-        //     'axios',
-        //     'classnames',
-        //     'history',
-        //     'moment',
-        //     'react',
-        //     'react-dom',
-        //     'react-modal',
-        //     'react-router',
-        //     'react-redux',
-        //     'redux',
-        //     'redux-thunk',
-        //     'reselect',
-        //     'immutable',
-        // ],
-        application: [config.PATH.FRONTSIDE + '/index.jsx']
+        application: [path.join(process.cwd(), config.PATH.APPFRONT, 'index.jsx')]
     },
 
     resolve : {
         modulesDirectories: [
             'node_modules',
-            path.resolve(config.PATH.FRONTSIDE, 'common')
+            path.resolve(process.cwd(), config.PATH.APPFRONT, 'common')
             ],
         alias: {
-            store: path.resolve(config.PATH.FRONTSIDE, 'store')
+            store: path.resolve(process.cwd(), config.PATH.APPFRONT, 'store')
         },
         extensions: ['', '.jsx', '.js']
     },
     output: {
-        path: path.join(config.PATH.STATIC),
+        path: path.join(process.cwd(), config.PATH.STATIC),
         filename: 'js/[name].js',
-        outputPath: path.join(config.PATH.STATIC)
+        outputPath: path.join(process.cwd(), config.PATH.STATIC)
     },
 
     module: {
@@ -59,13 +44,13 @@ module.exports = {
             precss,
             vars({
                 variables: function () {
-                        return require(config.PATH.FRONTSIDE + '/../style/variable.js')
+                        return require(path.join(process.cwd(), config.PATH.APPFRONT, 'style', 'variable.js'))
                     }
                 }),
             calc,
             size,
             postcssSVG({
-                paths: [config.PATH.FRONTSIDE + '/../style/icons'],
+                paths: [path.join(process.cwd(), config.PATH.APPFRONT, 'style', 'icons')],
                 defaults: '[fill]: #FFF;'
             })
         ]

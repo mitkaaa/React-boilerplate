@@ -1,17 +1,16 @@
 /* eslint-disable */
 'use strict'
 
-const _ = require('lodash')
 const path = require('path')
+const chalk = require('chalk')
 const webpack = require('webpack')
 const WebpackDevServer = require('webpack-dev-server')
-
 const CommonProfile = require('./common.profile.js')
-const p = require('../config.js')
+const p = require('../server/configuration')
 
-const webServerPort = p.portWebpackDevServer
+const webServerPort = p.PORTWEBPACKDEVSERVER
 
-const config = _.extend({}, CommonProfile, {
+const config = Object.assign({}, CommonProfile, {
     id: 'development',
     env: {
         NODE_ENV: 'development',
@@ -38,7 +37,7 @@ const config = _.extend({}, CommonProfile, {
             loaders: ['babel']
         }])
     },
-    output: _.extend({}, CommonProfile.output, {
+    output: Object.assign({}, CommonProfile.output, {
         publicPath: `http://localhost:${webServerPort}/`
     }),
     watch: true,
@@ -48,9 +47,8 @@ const config = _.extend({}, CommonProfile, {
     ]),
     entry: {
         application: [
-            'react-hot-loader/patch',
-            `webpack-dev-server/client?http://localhost:${webServerPort}/`,
-            'webpack/hot/only-dev-server'
+            // `webpack-dev-server/client?http://localhost:${webServerPort}/`,
+            // 'webpack/hot/only-dev-server'
             ].concat(CommonProfile.entry.application)
     },
     devtool: 'eval'
@@ -72,9 +70,6 @@ const serverInstance = new WebpackDevServer(webpack(config), {
     if (err) {
         throw Error(err)
     }
-
-    console.log(`Server avaliable at http://localhost:${webServerPort}/`)
 })
-
 
 module.exports = config

@@ -22,3 +22,5 @@ node_modules/*
 *.log
 .idea/
 .c9/*
+
+static/js/*

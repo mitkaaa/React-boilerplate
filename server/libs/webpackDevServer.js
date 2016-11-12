@@ -6,7 +6,6 @@ import webpack from 'webpack'
 
 import webpackConfig from '../../webpack.dev.config'
 
-
 const entry = [`webpack-hot-middleware/client?${webpackConfig.hostname}`]
 
 webpackConfig.entry = webpackConfig.entry.concat(entry)
@@ -29,7 +28,7 @@ const webpackDev = webpackDevMiddleware(compiler, {
     quiet: false,
     noInfo: false,
     historyApiFallback: true,
-    
+
     // build: true,
 
     // hot: true,

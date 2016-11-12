@@ -2,9 +2,10 @@
 'use strict'
 
 const _ = require('lodash')
+const path = require('path')
 const webpack = require('webpack')
 const CommonProfile = require('./common.profile.js')
-const    ExtractTextPlugin   = require('extract-text-webpack-plugin')
+const ExtractTextPlugin = require('extract-text-webpack-plugin')
 
 const config = _.extend({}, CommonProfile, {
     id: 'production',
@@ -18,6 +19,8 @@ const config = _.extend({}, CommonProfile, {
     DEBUG: false
 })
 
+const CSS = new ExtractTextPlugin(path.join('css', 'main.css'))
+
 config.plugins = config.plugins.concat([
     new webpack.optimize.DedupePlugin(),
     new webpack.optimize.UglifyJsPlugin({
@@ -26,20 +29,18 @@ config.plugins = config.plugins.concat([
             dead_code: true // eslint-disable-line camelcase
         }
     }),
-   new ExtractTextPlugin('css/main.css'),
-   new webpack.optimize.CommonsChunkPlugin('vendor', 'vendor.js', Infinity)
+    CSS
 ])
-
-
 
 config.module.loaders = config.module.loaders.concat([
     {
         test: /\.css$/,
         exclude: /node_modules/,
-        loader: ExtractTextPlugin.extract(
-            'style-loader',
-            'css-loader?modules&importLoaders=1&camelCase&localIdentName=[hash:base64:8]',
-            'postcss-loader')
+        loader: CSS.extract(
+          'style-loader',
+          'css-loader?modules&importLoaders=1&camelCase&localIdentName=[hash:base64:8]',
+          'postcss-loader'
+        )
     },
     {
         test: /\.js[x]?$/,
@@ -47,7 +48,6 @@ config.module.loaders = config.module.loaders.concat([
         loaders: ['babel-loader']
     }
 ])
-
 
 return webpack(config, function (err, stats) {
     if (err) {
