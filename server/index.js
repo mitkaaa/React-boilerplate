@@ -25,7 +25,6 @@ middlewares.map((middleware) => {
 })
 
 app.set('env', process.env.NODE_ENV || development)
-console.log(process.cwd(), config.PATH.TEMPLATE);
 app.set('views', path.join(process.cwd(), config.PATH.TEMPLATE))
 app.set('view engine', 'pug')
 app.set('port', config.PORT)
