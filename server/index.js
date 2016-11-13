@@ -39,10 +39,8 @@ app.use(express.static(path.join(process.cwd(), config.PATH.STATIC)))
 if (app.get('env') === development) {
     // development env
     app.use(morgan('tiny'))
-    require('../webpack/development.profile.js')
 } else {
     // production env
-    require('../webpack/production.profile.js')
     app.use(compression())
 }
 

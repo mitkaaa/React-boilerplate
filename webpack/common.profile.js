@@ -1,6 +1,7 @@
-/* eslint-disable */
-"use strict"
+'use strict'
 
+const _                   = require('lodash')
+const fs                  = require('fs')
 const path                = require('path')
 const config              = require('../server/configuration')
 const webpack             = require('webpack')
@@ -11,9 +12,11 @@ const vars                = require('postcss-simple-vars')
 const calc                = require('postcss-calc')
 const size                = require('postcss-size')
 const postcssSVG          = require('postcss-svg')
-const ExtractTextPlugin   = require('extract-text-webpack-plugin')
 
-module.exports = {
+const additionalProfileWebpackPath = path.join(process.cwd(), 'webpack.profile.js')
+const additionalProfileWebpack = fs.existsSync(additionalProfileWebpackPath) ? require(middlewaresPath) : {}
+
+module.exports = _.merge({
     entry: {
         application: [path.join(process.cwd(), config.PATH.APPFRONT, 'index.jsx')]
     },
@@ -22,7 +25,7 @@ module.exports = {
         modulesDirectories: [
             'node_modules',
             path.resolve(process.cwd(), config.PATH.APPFRONT, 'common')
-            ],
+        ],
         alias: {
             store: path.resolve(process.cwd(), config.PATH.APPFRONT, 'store')
         },
@@ -38,15 +41,13 @@ module.exports = {
         loaders: []
     },
 
-    postcss: function () {
+    postcss: () => {
         return [
             autoprefixer,
             precss,
             vars({
-                variables: function () {
-                        return require(path.join(process.cwd(), config.PATH.APPFRONT, 'style', 'variable.js'))
-                    }
-                }),
+                variables: () => require(path.join(process.cwd(), config.PATH.APPFRONT, 'style', 'variable.js'))
+            }),
             calc,
             size,
             postcssSVG({
@@ -63,4 +64,4 @@ module.exports = {
             }
         })
     ]
-}
+}, additionalProfileWebpack)
