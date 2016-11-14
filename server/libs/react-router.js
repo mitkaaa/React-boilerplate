@@ -2,7 +2,7 @@ const config = require('../configuration')
 
 const path = require('path')
 const Router = require('react-router')
-const routes = require(path.join(process.cwd(),config.PATH.APPFRONT, 'route.jsx')).default[0]
+const routes = require(path.join(process.cwd(),config.PATH.APPFRONT, 'route.jsx'))
 
 module.exports = (req, res) => {
     const location = req.url
