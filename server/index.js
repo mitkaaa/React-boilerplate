@@ -55,10 +55,10 @@ http.createServer(app).listen(app.get('port'), () => {
     console.log(table.toString())
 })
 
-app.get('/', (req, res) => res.render('index', {
-    production: app.get('env') !== development,
-    dev: app.get('env') === development ? 'http://localhost:' + config.PORTWEBPACKDEVSERVER : ''
-}))
+// app.get('/', (req, res) => res.render('index', {
+//     production: app.get('env') !== development,
+//     dev: app.get('env') === development ? 'http://localhost:' + config.PORTWEBPACKDEVSERVER : ''
+// }))
 
 app.use(require('./libs/react-router'))
 
