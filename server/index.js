@@ -11,6 +11,7 @@ const methodOverride =  require('method-override')
 const morgan =  require('morgan')
 const cookieParser = require('cookie-parser')
 const compression = require('compression')
+const Table = require('cli-table')
 const config = require('./configuration')
 
 const app = express()
@@ -45,9 +46,13 @@ if (app.get('env') === development) {
 }
 
 http.createServer(app).listen(app.get('port'), () => {
-    console.log(`${chalk.bold('NODE_ENV')}: ${app.get('env') === development ? chalk.yellow(app.get('env')) : chalk.blue(app.get('env'))}`)
-    console.log(`${chalk.bold('PORT')}: ${chalk.blue(app.get('port'))}`)
-    console.log(`${chalk.bold('DATE')}: ${chalk.green(moment().format('DD-MM-YYYY, HH:MM:ss'))}`)
+    const table = new Table({ chars: {'mid': '', 'left-mid': '', 'mid-mid': '', 'right-mid': ''} })
+    table.push(
+        [`${chalk.bold('NODE_ENV')}`, `${app.get('env') === development ? chalk.yellow(app.get('env')) : chalk.green(app.get('env'))}`]
+      , [`${chalk.bold('PORT')}`, `${chalk.green(app.get('port'))}`]
+      , [`${chalk.bold('DATE')}`, `${chalk.green(moment().format('DD-MM-YYYY, HH:MM:ss'))}`]
+    )
+    console.log(table.toString())
 })
 
 app.get('/', (req, res) => res.render('index', {
@@ -55,6 +60,6 @@ app.get('/', (req, res) => res.render('index', {
     dev: app.get('env') === development ? 'http://localhost:' + config.PORTWEBPACKDEVSERVER : ''
 }))
 
-// app.use(require('./libs/react-router'))
+app.use(require('./libs/react-router'))
 
 module.exports = app

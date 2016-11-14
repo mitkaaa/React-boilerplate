@@ -1,8 +1,8 @@
-const config = require('../../config.js')
+const config = require('../configuration')
 
 const path = require('path')
 const Router = require('react-router')
-const routes = require(path.join(config.PATH.FRONTSIDE, 'route.jsx')).default[0]
+// const routes = require(path.join(process.cwd(),config.PATH.APPFRONT, 'route.jsx')).default[0]
 
 module.exports = (req, res) => {
     const location = req.url
@@ -13,8 +13,8 @@ module.exports = (req, res) => {
             res.redirect(302, redirectLocation.pathname + redirectLocation.search)
         } else if (renderProps) {
             return res.status(200).render('index', {
-                production: process.env.NODE_ENV === 'production',
-                dev: process.env.NODE_ENV !== 'production' ? 'http://localhost:' + config.portWebpackDevServer : ''
+                production: app.get('env') !== development,
+                dev: app.get('env') === development ? 'http://localhost:' + config.PORTWEBPACKDEVSERVER : ''
             })
         }
     })
