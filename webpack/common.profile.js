@@ -11,7 +11,6 @@ const precss              = require('precss')
 const vars                = require('postcss-simple-vars')
 const calc                = require('postcss-calc')
 const size                = require('postcss-size')
-const postcssSVG          = require('postcss-svg')
 
 const additionalProfileWebpackPath = path.join(process.cwd(), 'webpack.profile.js')
 const additionalProfileWebpack = fs.existsSync(additionalProfileWebpackPath) ? require(middlewaresPath) : {}
@@ -38,7 +37,12 @@ module.exports = _.merge({
     },
 
     module: {
-        loaders: []
+        loaders: [
+            {
+                test: /\.svg$/,
+                loaders: ['svg-inline-loader?removeTags=true&removingTags[]=title&removingTags[]=desc&removeSVGTagAttrs=false']
+            }
+        ]
     },
 
     postcss: () => {
@@ -49,11 +53,7 @@ module.exports = _.merge({
                 variables: () => require(path.join(process.cwd(), config.PATH.APPFRONT, 'style', 'variable.js'))
             }),
             calc,
-            size,
-            postcssSVG({
-                paths: [path.join(process.cwd(), config.PATH.APPFRONT, 'style', 'icons')],
-                defaults: '[fill]: #FFF;'
-            })
+            size
         ]
     },
 
