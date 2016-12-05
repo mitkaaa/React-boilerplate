@@ -1,0 +1,32 @@
+.block {
+    flex-direction: column;
+    min-height: 100%;
+}
+
+.day {
+    height: 100%;
+    &-item {
+        &-month {
+            position: absolute;
+            text-align: center;
+            &-block {
+                background: $dark-grey-1;
+                padding: 10px;
+                display: inline-block;
+            }
+        }
+    }
+}
+
+.item {
+
+    &-day {
+        background: $dark-grey;
+        padding: 10px 0;
+        font-size: 0.8em;
+        text-align: center;
+    }
+    &-text {
+        padding: 10px;
+    }
+}

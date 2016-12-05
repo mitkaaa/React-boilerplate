@@ -1,0 +1,22 @@
+- var date = production ? '' : '?' + new Date().getTime()
+doctype html
+html(lang="ru")
+	head
+		title !{title}
+		script.
+			function loader(){
+				var loader =  document.getElementById('loader');
+				loader.className += " hide";
+				setTimeout(function(){
+					loader.parentNode.removeChild(loader);
+				}, 500);
+			}
+			// window.__INITIAL_STATE__ = !{JSON.stringify(initialState)}
+		if production
+			link(rel="stylesheet" type="text/css" href="/css/main.css")
+	body(onload="loader()")
+		#loader.loading
+			.loader
+		div#application !{app}
+		script(type='text/javascript' src='https://maps.googleapis.com/maps/api/js?key=AIzaSyDrdbbEZjWw-Lx2teW7YH4Mxtxc_RVeLnM&libraries=geometry,places,visualization')
+		script(src=dev + '/js/application.js' + date, type='text/javascript')

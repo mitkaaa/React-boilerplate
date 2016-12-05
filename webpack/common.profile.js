@@ -1,73 +1,59 @@
-/* eslint-disable */
-"use strict"
+'use strict'
 
-const path = require('path')
-const    config = require('../config')
-const    webpack = require('webpack')
+const _                   = require('lodash')
+const fs                  = require('fs')
+const path                = require('path')
+const config              = require('../server/configuration')
+const webpack             = require('webpack')
 
-const    autoprefixer        = require('autoprefixer')
-const    precss              = require('precss')
-const    vars                = require('postcss-simple-vars')
-const    calc                = require('postcss-calc')
-const    size                = require('postcss-size')
-const    postcssSVG          = require('postcss-svg')
-const    ExtractTextPlugin   = require('extract-text-webpack-plugin')
+const autoprefixer        = require('autoprefixer')
+const precss              = require('precss')
+const vars                = require('postcss-simple-vars')
+const calc                = require('postcss-calc')
+const size                = require('postcss-size')
 
-module.exports = {
+const additionalProfileWebpackPath = path.join(process.cwd(), 'webpack.profile.js')
+const additionalProfileWebpack = fs.existsSync(additionalProfileWebpackPath) ? require(middlewaresPath) : {}
+
+module.exports = _.merge({
     entry: {
-        // vendor: [
-        //     'axios',
-        //     'classnames',
-        //     'history',
-        //     'moment',
-        //     'react',
-        //     'react-dom',
-        //     'react-modal',
-        //     'react-router',
-        //     'react-redux',
-        //     'redux',
-        //     'redux-thunk',
-        //     'reselect',
-        //     'immutable',
-        // ],
-        application: [config.PATH.FRONTSIDE + '/index.jsx']
+        application: [path.join(process.cwd(), config.PATH.APPFRONT, 'index.jsx')]
     },
 
     resolve : {
         modulesDirectories: [
             'node_modules',
-            path.resolve(config.PATH.FRONTSIDE, 'common')
-            ],
+            path.resolve(process.cwd(), config.PATH.APPFRONT, 'common')
+        ],
         alias: {
-            store: path.resolve(config.PATH.FRONTSIDE, 'store')
+            store: path.resolve(process.cwd(), config.PATH.APPFRONT, 'store')
         },
         extensions: ['', '.jsx', '.js']
     },
     output: {
-        path: path.join(config.PATH.STATIC),
+        path: path.join(process.cwd(), config.PATH.STATIC),
         filename: 'js/[name].js',
-        outputPath: path.join(config.PATH.STATIC)
+        outputPath: path.join(process.cwd(), config.PATH.STATIC)
     },
 
     module: {
-        loaders: []
+        loaders: [
+            {
+                test: /\.svg$/,
+                loaders: ['svg-inline-loader?removeTags=true&removingTags[]=title&removingTags[]=desc&removeSVGTagAttrs=false']
+            }
+        ]
     },
 
-    postcss: function () {
+    postcss: () => {
         return [
             autoprefixer,
             precss,
             vars({
-                variables: function () {
-                        return require(config.PATH.FRONTSIDE + '/../style/variable.js')
-                    }
-                }),
+                variables: () => require(path.join(process.cwd(), config.PATH.APPFRONT, 'style', 'variable.js'))
+            }),
             calc,
-            size,
-            postcssSVG({
-                paths: [config.PATH.FRONTSIDE + '/../style/icons'],
-                defaults: '[fill]: #FFF;'
-            })
+            size
         ]
     },
 
@@ -78,4 +64,4 @@ module.exports = {
             }
         })
     ]
-}
+}, additionalProfileWebpack)

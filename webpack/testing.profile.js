@@ -10,7 +10,7 @@ const p = require('../server/configuration')
 
 const webServerPort = p.PORTWEBPACKDEVSERVER
 
-const config = Object.assign({}, CommonProfile, {
+module.exports = Object.assign({}, CommonProfile, {
     id: 'development',
     env: {
         NODE_ENV: 'development',
@@ -51,25 +51,10 @@ const config = Object.assign({}, CommonProfile, {
             // 'webpack/hot/only-dev-server'
             ].concat(CommonProfile.entry.application)
     },
+
+    node: {
+        fs: 'empty'
+    },
+
     devtool: 'eval'
 })
-
-
-const serverInstance = new WebpackDevServer(webpack(config), {
-    contentBase: p.PATH.STATIC,
-    stats: {
-        chunks: false,
-        colors: true
-    },
-    headers: {
-        // 'Access-Control-Allow-Origin': '*'
-    },
-    hot: true,
-    historyApiFallback: true
-}).listen(webServerPort, 'localhost', function (err) {
-    if (err) {
-        throw Error(err)
-    }
-})
-
-module.exports = config

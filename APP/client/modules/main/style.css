@@ -1,0 +1,62 @@
+.autocomplete {}
+.autocomplete :global(input) {
+
+}
+.main {
+    background: #AAA;
+    color: #FFF;
+    height: 100vh;
+    min-height: 300px;
+    width: 100%;
+    display: inline-block;
+    &-container {
+        margin: 0 auto;
+        max-width: $width-block;
+        &-height {
+            padding: 0em 5em;
+            min-height: 100vh;
+        }
+    }
+
+}
+
+.calendar {
+    :global .rc-calendar-range-part {
+        display: inline-block;
+    }
+
+    :global .rc-calendar-cell {
+        padding: 5px;
+        cursor: pointer;
+    }
+    :global .rc-calendar-in-range-cell {
+        background: blue
+    }
+}
+
+.border {
+    display: inline-block;
+    border-radius: $border-radius-input;
+    background-color: #fff;
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    margin-right: 5px;
+}
+.input, .autocomplete :global(input) {
+    outline: none;
+    font-weight: 200;
+    font-size: 18px;
+    line-height: 24px;
+    color: #757575;
+    padding: 12px;
+    background: #fff;
+    position: relative;
+    display: inline-block;
+    vertical-align: middle;
+    border: 0;
+}
+.datePicker {
+    border-radius: $border-radius-input;
+    display: inline-block;
+    background-color: #fff;
+    border: 2px solid rgba(255, 255, 255, 0.2);
+}

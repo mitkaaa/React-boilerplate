@@ -1,0 +1,150 @@
+$width: 80px;
+
+.toolbar {
+    height: 100vh;
+    background: $dark-grey;
+    color: #f0f0f0;
+    width: $width;
+    overflow: hidden;
+    position: relative;
+    transition: all 0.3s ease;
+    &-openToolbar {
+        width: calc($width + 300px);
+    }
+    &-panel {
+        height: 100vh;
+        position: absolute;
+        top: 0;
+        left: $width;
+        right: 0;
+        background: $dark-grey-1;
+        &-shadow {
+            transition: opacity ease 1s;
+            position: absolute;
+            left: 0;
+            right: 0;
+            height: 20px;
+            background: #FFF;
+            filter: blur(5px);
+            &-top {
+                top: 0;
+                background: linear-gradient(to bottom, rgba(0, 0, 0, 0.3) 0%, rgba(0, 0, 0, 0) 100%);
+            }
+            &-bottom {
+                bottom: 0;
+                background: linear-gradient(to top, rgba(0, 0, 0, 0.3) 0%, rgba(0, 0, 0, 0) 100%)
+            }
+        }
+        &-scroll {
+            width: 100%;
+            height: 100%;
+        }
+        &-noMarkers {
+            width: 100%;
+            height: 100%;
+            background: #4b4c51 url('/img/back_map.png');
+            background-size: cover;
+            background-position: center;
+            box-shadow: 0 0 150px rgba(0, 0, 0, 0.5) inset;
+            overflow: hidden;
+            position: relative;
+            &-block {
+                text-align: center;
+                min-width: 200px;
+                padding: 0 10px;
+            }
+            &-search {
+                border: 0;
+                width: 100%;
+                border-bottom: 2px solid rgba(255, 255, 255, 0.5);
+                padding: 5px 8px;
+                background: none;
+                color: #FFF;
+                box-sizing: border-box;
+                text-align: center;
+                &:focus {
+                    border-bottom: 2px solid rgba(255, 255, 255, 0.7);
+                }
+            }
+            &-icon {
+                background: rgba(255, 255, 255, 0.2);
+                width: 100px;
+                height: 100px;
+                padding-top: 20px;
+                display: inline-block;
+                border-radius: 100px;
+            }
+            &-text {
+                font-size: 0.8em;
+                opacity: 0.8;
+            }
+            &-Link {
+                position: absolute;
+                top: 0;
+                padding: 20px 0;
+                cursor: pointer;
+                text-align: center;
+                min-width: 300px;
+                &-icon {
+                    background: rgba(255, 255, 255, 0.2);
+                    size: 20px;
+                    border-radius: 30px;
+                    display: inline-block;
+                    position: absolute;
+                    top: -2px;
+                    left: -27px;
+                }
+                &-click {
+                    border-bottom: 1px dotted rgba(255, 255, 255, 0.7);
+                    display: inline-block;
+                    line-height: 1.2;
+                    font-size: 0.9em;
+                    position: relative;
+                }
+                &-description {
+                    opacity: 0.6;
+                    font-size: 0.7em;
+                    margin: 0;
+                }
+                &:hover &-click{
+                    border-color: rgba(255, 255, 255, 0);
+                }
+            }
+        }
+    }
+
+    &-main {
+        width: $width;
+        height: 100vh;
+        display: inline-block;
+        vertical-align: top;
+        position: relative;
+        z-index: 2;
+        &-list{
+            padding: 0;
+            margin: 0;
+            list-style: none;
+            &-link {
+                transition: all ease-in 0.1s;
+                display: block;
+                size: $width 100px;
+                cursor: pointer;
+                border-left: 0px solid $acid-blue;
+                &:hover {
+                    background: $dark-grey-1;
+                }
+                &-active, &:active {
+                    border-left: 3px solid $acid-blue;
+                    background: $dark-grey-1;
+                    box-shadow: 0 0 50px rgba(0,0,0,0.2)
+                }
+            }
+        }
+    }
+
+    &-logo {
+        display: block;
+        size: $width 60px;
+        background: rgba(255, 255, 255, 0.5);
+    }
+}

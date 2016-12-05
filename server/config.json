@@ -1,9 +1,10 @@
 {
     "PATH": {
-        "APPSERVER": "./APP-SERVER",
-        "APPFRONT": "./APP-FRONT",
+        "APPSERVER": "./APP/server",
+        "APPFRONT": "./APP/client",
         "STATIC": "./static",
         "TEMPLATE": "./template"
     },
-    "PORT": "8080"
+    "PORT": "8080",
+    "PORTWEBPACKDEVSERVER": "4444"
 }
