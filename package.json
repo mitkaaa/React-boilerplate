@@ -4,6 +4,7 @@
   "description": "Boilerplate react+redux server render",
   "main": "index.js",
   "scripts": {
+    "webpack-dev": "export NODE_ENV=development && node webpack",
     "dev": "export NODE_ENV=development && node ./index.js",
     "production": "export NODE_ENV=production && node ./index.js"
   },
