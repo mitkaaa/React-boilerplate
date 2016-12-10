@@ -16,7 +16,8 @@
             "APPSERVER": "./APP-SERVER",
             "APPFRONT": "./APP-FRONT",
             "STATIC": "./static",
-            "TEMPLATE": "./template"
+            "TEMPLATE": "./template",
+            "STUB": "./stub"
         },
         "PORT": "8080",
         "PORTWEBPACKDEVSERVER": "4444"
