@@ -49,9 +49,7 @@ module.exports = _.merge({
         return [
             autoprefixer,
             precss,
-            vars({
-                variables: () => require(path.join(process.cwd(), config.PATH.APPFRONT, 'style', 'variable.js'))
-            }),
+            vars,
             calc,
             size
         ]
