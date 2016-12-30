@@ -38,7 +38,8 @@ config.module.loaders = config.module.loaders.concat([
         exclude: /node_modules/,
         loader: CSS.extract(
           'style-loader',
-          'css-loader?modules&importLoaders=1&camelCase&localIdentName=[hash:base64:8]',
+          'css-loader?modules&importLoaders=1&camelCase&localIdentName=[path][name]--[local]--[hash:base64:5]',
+        //   'css-loader?modules&importLoaders=1&camelCase&localIdentName=[hash:base64:8]',
           'postcss-loader'
         )
     },
