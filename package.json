@@ -6,7 +6,9 @@
   "scripts": {
     "webpack-dev": "export NODE_ENV=development && node webpack",
     "dev": "export NODE_ENV=development && node ./index.js",
-    "production": "export NODE_ENV=production && node ./index.js"
+    "production": "export NODE_ENV=production && node ./index.js",
+    "test": "node node_modules/karma/bin/karma start karma.config.js --browsers PhantomJS --single-run",
+    "test:watch": "node node_modules/karma/bin/karma start --browsers Chrome karma-nocoverage.config.js"
   },
   "repository": {
     "type": "git",

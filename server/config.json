@@ -6,6 +6,6 @@
         "TEMPLATE": "./template",
         "STUB": "./stub"
     },
-    "PORT": "8080",
+    "PORT": "1111",
     "PORTWEBPACKDEVSERVER": "4444"
 }
