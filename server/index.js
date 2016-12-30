@@ -56,6 +56,6 @@ http.createServer(app).listen(app.get('port'), () => {
 //     dev: app.get('env') === development ? 'http://localhost:' + config.PORTWEBPACKDEVSERVER : ''
 // }))
 
-app.use(require('./libs/react-router'))
+// app.use(require('./libs/react-router'))
 
 module.exports = app
