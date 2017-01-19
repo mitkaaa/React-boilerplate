@@ -14,11 +14,12 @@ module.exports = (config) => {
         autoWatchBatchDelay: 300,
 
         files: [
-            process.cwd() + '/**/tests/*.spec.js'
+            'APP/**/tests/*.spec.js'
         ],
 
         preprocessors: {
-            [process.cwd() + './**/tests/*.spec.js']: ['webpack']
+            ['APP/**/*.js']: ['webpack'],
+            ['APP/**/tests/*.spec.js']: ['webpack']
         },
 
         webpack: webpackConfig,
@@ -27,30 +28,36 @@ module.exports = (config) => {
             noInfo: true
         },
 
+        webpackServer: {
+            noInfo: true // please don’t spam the console when running in karma!
+        },
+
         plugins: [
             'karma-webpack',
             'karma-jasmine',
             'karma-chrome-launcher',
             'karma-phantomjs-launcher',
-            'karma-junit-reporter',
+            // 'karma-junit-reporter',
             'karma-coverage',
             'karma-jasmine-diff-reporter'
         ],
-        //
+
         // junitReporter: {
         //     suite: 'suiteName',
-        //     outputDir: 'reports/tests'
+        //     outputDir: CONFIG.PATH.STATIC + '/coverage'
         // },
+
         coverageReporter: {
             dir: CONFIG.PATH.STATIC + '/coverage',
             reporters: [
                 {
                     type: 'lcov',
-                    file: 'lcov.info'
+                    file: 'lcov.info',
+                    subdir: './'
                 },
                 { type: 'html', subdir: 'report-html' }
             ]
         },
-        reporters: ['progress', 'coverage']
+        reporters: ['progress', 'jasmine-diff', 'coverage']
     })
 }

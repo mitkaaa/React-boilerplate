@@ -35,21 +35,26 @@ module.exports = Object.assign({}, CommonProfile, {
             test: /\.js[x]?$/,
             exclude: /node_modules/,
             loaders: ['babel']
-        }])
+        }]),
+        postLoaders: [
+            { // delays coverage til after tests are run, fixing transpiled source coverage error
+                test: /\.js$/,
+                exclude: /node_modules/,
+                loader: 'istanbul-instrumenter'
+            }
+        ]
     },
-    output: Object.assign({}, CommonProfile.output, {
-        publicPath: `http://localhost:${webServerPort}/`
-    }),
+
+    // output: Object.assign({}, CommonProfile.output, {
+    //     publicPath: `http://localhost:${webServerPort}/`
+    // }),
     watch: true,
     plugins: CommonProfile.plugins.concat([
         new webpack.SourceMapDevToolPlugin(),
         new webpack.HotModuleReplacementPlugin()
     ]),
     entry: {
-        application: [
-            // `webpack-dev-server/client?http://localhost:${webServerPort}/`,
-            // 'webpack/hot/only-dev-server'
-            ].concat(CommonProfile.entry.application)
+        application: CommonProfile.entry.application
     },
 
     node: {
