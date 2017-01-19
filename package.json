@@ -1,6 +1,6 @@
 {
   "name": "react-boilerplate",
-  "version": "1.0.0-alpha.1",
+  "version": "1.0.1",
   "description": "Boilerplate react+redux server render",
   "main": "index.js",
   "scripts": {
