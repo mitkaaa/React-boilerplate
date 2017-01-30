@@ -17,9 +17,9 @@ const config = require('./configuration')
 const app = express()
 const development = 'development'
 
-const middlewaresPath = path.join(process.cwd(), config.PATH.APPSERVER, 'index.js')
-const middleware = fs.existsSync(middlewaresPath) ? require(middlewaresPath) : {}
-app.use(middleware)
+// const middlewaresPath = path.join(process.cwd(), config.PATH.APPSERVER, 'index.js')
+// const middleware = fs.existsSync(middlewaresPath) ? require(middlewaresPath) : {}
+// app.use(middleware)
 
 app.set('env', process.env.NODE_ENV || development)
 app.set('views', path.join(process.cwd(), config.PATH.TEMPLATE))
