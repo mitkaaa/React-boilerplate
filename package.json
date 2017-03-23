@@ -1,6 +1,6 @@
 {
   "name": "react-boilerplate",
-  "version": "1.0.1",
+  "version": "0.0.0",
   "description": "Boilerplate react+redux server render",
   "main": "index.js",
   "scripts": {
@@ -106,5 +106,8 @@
   },
   "devDependencies": {
     "babel-plugin-istanbul": "^3.1.2"
+  },
+  "publishConfig": {
+    "registry":"https://registry.npmjs.org/"
   }
 }
