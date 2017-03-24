@@ -14,7 +14,7 @@ module.exports = (config) => {
         autoWatchBatchDelay: 300,
 
         files: [
-            'APP/**/tests/*.spec.js'
+            'example/**/tests/*.spec.js'
         ],
 
         preprocessors: {

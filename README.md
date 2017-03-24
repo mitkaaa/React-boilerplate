@@ -1,4 +1,5 @@
-# Boilerplate development
+# Boilerplate kit
+React+Redux, Expressjs, Webpack 2, Eslint, Karma
 
 #### Run scripts
 
