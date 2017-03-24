@@ -23,5 +23,5 @@ node_modules/*
 .idea/
 .c9/*
 
-static/js/*
-static/coverage/*
+reports/*
+target/*
