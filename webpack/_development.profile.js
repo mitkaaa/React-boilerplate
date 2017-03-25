@@ -1,3 +1,4 @@
+/* eslint-disable */
 'use strict'
 
 const path = require('path')
@@ -26,34 +27,20 @@ const config = Object.assign({}, CommonProfile, {
     DEBUG: true,
 
     module: {
-        rules: CommonProfile.module.loaders.concat([
-            {
-                test: /\.css$/,
-                exclude: /node_modules/,
-                use: [
-                    {
-                        loader: 'style-loader'
-                    }, {
-                        loader: 'css-loader',
-                        options: {
-                            modules: true,
-                            importLoaders: true,
-                            camelCase: true,
-                            localIdentName: '[path][name]--[local]--[hash:base64:5]'
-                        }
-                    },
-                    {
-                        loader: 'postcss-loader'
-                    }
-                ]
-            }, {
-                test: /\.js[x]?$/,
-                exclude: /node_modules/,
-                use: [{
-                    loader: 'babel'
-                }]
-            }
-        ])
+        loaders: CommonProfile.module.loaders.concat([
+        {
+            test: /\.css$/,
+            exclude: /node_modules/,
+            loaders: [
+                'style-loader',
+                'css-loader?modules&importLoaders=1&camelCase&localIdentName=[path][name]--[local]--[hash:base64:5]',
+                'postcss-loader'],
+        },
+        {
+            test: /\.js[x]?$/,
+            exclude: /node_modules/,
+            loaders: ['babel']
+        }])
     },
     output: Object.assign({}, CommonProfile.output, {
         publicPath: `http://localhost:${webServerPort}/`
@@ -67,7 +54,7 @@ const config = Object.assign({}, CommonProfile, {
         application: [
             // `webpack-dev-server/client?http://localhost:${webServerPort}/`,
             // 'webpack/hot/only-dev-server'
-        ].concat(CommonProfile.entry.application)
+            ].concat(CommonProfile.entry.application)
     },
     devtool: 'eval'
 })

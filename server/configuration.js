@@ -8,7 +8,7 @@ const configuration = (config = 'config.json') => {
         return configls
     }
     const configPath = path.join(process.cwd(), config)
-
+    console.log('configPath', configPath)
     configls = _.merge({},
         require(path.join(__dirname, config)),
         fs.existsSync(configPath) ? require(configPath) : {}
