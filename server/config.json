@@ -1,7 +1,7 @@
 {
     "PATH": {
-        "APPSERVER": "./APP/server",
-        "APPFRONT": "./APP/client",
+        "APPSERVER": "./example/server",
+        "APPFRONT": "./example/client",
         "STATIC": "./static",
         "TEMPLATE": "./template",
         "STUB": "./stub"

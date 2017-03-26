@@ -19,21 +19,9 @@ module.exports = _.merge({
     entry: {
         application: [path.join(process.cwd(), config.PATH.APPFRONT, 'index.jsx')]
     },
-
-    resolve : {
-        modulesDirectories: [
-            'node_modules',
-            path.resolve(process.cwd(), config.PATH.APPFRONT, 'common')
-        ],
-        alias: {
-            store: path.resolve(process.cwd(), config.PATH.APPFRONT, 'store')
-        },
-        extensions: ['', '.jsx', '.js']
-    },
     output: {
         path: path.join(process.cwd(), config.PATH.STATIC),
-        filename: 'js/[name].js',
-        outputPath: path.join(process.cwd(), config.PATH.STATIC)
+        filename: 'js/[name].js'
     },
 
     module: {
@@ -42,16 +30,6 @@ module.exports = _.merge({
                 test: /\.svg$/,
                 loaders: ['svg-inline-loader?removeTags=true&removingTags[]=title&removingTags[]=desc&removeSVGTagAttrs=false']
             }
-        ]
-    },
-
-    postcss: () => {
-        return [
-            autoprefixer,
-            precss,
-            vars,
-            calc,
-            size
         ]
     },
 
