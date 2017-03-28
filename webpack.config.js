@@ -43,5 +43,7 @@ module.exports = {
                 ]
             }
         ]
-    }
+    },
+    devtool: 'eval',
+    stats: 'normal'
 }

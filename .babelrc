@@ -1,3 +1,10 @@
 {
-  "presets": ["es2015", "react"]
+  "presets": ["es2015", "react"],
+  "plugins": [
+    "add-module-exports",
+    "transform-es3-property-literals",
+    "transform-es3-member-expression-literals",
+    "transform-object-rest-spread",
+    "syntax-decorators",
+    "transform-decorators-legacy"]
 }
