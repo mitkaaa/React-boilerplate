@@ -1,4 +1,5 @@
 'use strict'
+const webpack = require('webpack')
 const path = require('path')
 
 module.exports = {
@@ -44,6 +45,10 @@ module.exports = {
             }
         ]
     },
+    plugins: [new webpack.DllReferencePlugin({
+        context: '.',
+        manifest: require(path.join(process.cwd(), './target/vendor/vendor-manifest.json')),
+    })],
     devtool: 'eval',
     stats: 'normal'
 }
