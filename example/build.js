@@ -1,6 +1,12 @@
 const reactBasis = require('../')
 
-reactBasis({
+module.exports = reactBasis({
+    clientPath: '',
+    serverPath: '',
+    targetPath: '',
+    templatePath: '',
+    port: '',
+
     // webpackConfig: require('weback.config'),
     // dangerouslyUpdateWebpackConfig: (cw, env) => ({
     //     entry: './client/main.jsx'
