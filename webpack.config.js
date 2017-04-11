@@ -1,19 +1,27 @@
 'use strict'
-const webpack = require('webpack')
 const path = require('path')
 
 module.exports = {
     entry: path.join(process.cwd(), './example/client/index.jsx'),
     output: {
         path: path.join(process.cwd(), './target'),
-        filename: 'js/[name].js'
+        filename: 'js/[name].js',
+        chunkFilename : 'js/[name]-[id].js'
     },
     module: {
         rules: [
             {
                 test: /\.js[x]?$/,
                 exclude: /node_modules/,
-                loader: 'babel-loader'
+                use: [
+                    {
+                        loader: 'bundle-loader',
+                        options: {
+                            lazy: true
+                        }
+                    },
+                    { loader: 'babel-loader' }
+                ]
             },
             {
                 test: /\.css$/,
@@ -45,10 +53,10 @@ module.exports = {
             }
         ]
     },
-    plugins: [new webpack.DllReferencePlugin({
-        context: '.',
-        manifest: require(path.join(process.cwd(), './target/vendor/vendor-manifest.json')),
-    })],
-    devtool: 'eval',
+    // plugins: [new webpack.DllReferencePlugin({
+    //     context: '.',
+    //     manifest: require(path.join(process.cwd(), './target/vendor/vendor-manifest.json')),
+    // })],
+    devtool: void 0,// 'eval',
     stats: 'normal'
 }

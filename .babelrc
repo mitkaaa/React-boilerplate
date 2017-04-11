@@ -1,10 +1,19 @@
 {
   "presets": ["es2015", "react"],
   "plugins": [
-    "add-module-exports",
-    "transform-es3-property-literals",
-    "transform-es3-member-expression-literals",
+    "transform-runtime",
+    "transform-es5-property-mutators",
+    "syntax-class-properties",
     "transform-object-rest-spread",
+    "transform-class-properties",
     "syntax-decorators",
-    "transform-decorators-legacy"]
+    "transform-decorators-legacy",
+    "transform-es2015-block-scoping",
+    [
+      "transform-es2015-classes", { "loose": true }
+    ],
+    "transform-proto-to-assign",
+    "transform-async-to-generator",
+    "transform-regenerator"
+  ]
 }
