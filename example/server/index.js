@@ -1,10 +1,5 @@
-const express = require('express')
+const app = require('express').Router()
 
-const router = express.Router()
+app.get('/abcabc', (req, res) => res.send('abc/abc'))
 
-router.get('/', (req, res) => {
-  res.render('index', { status: 200 })
-})
-
-
-module.exports = router
+module.exports = app

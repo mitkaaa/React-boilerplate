@@ -1,4 +1,4 @@
-const webpackConfig = require('./webpack/testing.profile.js')
+const webpackConfig = require('./configuration/testing.profile.js')
 const CONFIG = require('./server/config.json')
 
 module.exports = (config) => {
