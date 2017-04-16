@@ -1,9 +1,21 @@
 import React from 'react'
-import { render } from 'react-dom'
-import { Provider } from 'react-redux'
+import { store } from './store'
 
-render(
-    <Provider component={Provider} store={store}>
-        <div>Hello world!</div>
-    </Provider>
-, document.getElementById('app'))
+import { render } from 'react-dom'
+
+import { AppContainer } from 'react-hot-loader'
+import { BrowserRouter } from 'react-router-dom'
+import { createHashHistory } from 'history'
+import { stringify, parse } from 'qs'
+
+import Root from './main.jsx'
+
+const renderApp = (RootComponent) => render(
+    <AppContainer><RootComponent store={store} /></AppContainer>
+    , document.getElementById('app'))
+
+renderApp(Root)
+
+if (module.hot) {
+    module.hot.accept('./main', () => renderApp(require('./main').default))
+}

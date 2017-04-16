@@ -1,42 +1,23 @@
 import React from 'react'
-import { Router } from 'react-router'
-import { render } from 'react-dom'
+import PropTypes from 'prop-types'
+import { Link, BrowserRouter, Route } from 'react-router-dom'
 import { Provider } from 'react-redux'
-import App from 'common-app'
+import { Main }  from './modules/main'
 
-import route from './route.jsx'
-// export default class Main extends React.Component {
-//     render () {
-//         return (<Provider component={Provider} store={store}>
-//              <App>
-//                  <Router children={route} history={browserHistory} />
-//              </App>
-//          </Provider>)
-//     }
-// }
-export default ({ store, browserHistory }) => (
-    <Provider store={store}>
-         <App>
-             <Router children={route} history={browserHistory} />
-         </App>
-     </Provider>
-)// render(
-        // <Provider component={Provider} store={store}>
-        //     <App>
-        //         <Router children={route} history={browserHistory} />
-        //     </App>
-        // </Provider>
-// , document.getElementById('application'))
-//
-//
-// if (module.hot) {
-//     module.hot.accept('react-redux', () => {
-//         render(<AppContainer>
-//             <Provider component={Provider} store={store}>
-//                 <App>
-//                     <Router children={route} history={browserHistory} />
-//                 </App>
-//             </Provider>
-//         </AppContainer>)
-//     })
-// }
+const application = ({ store }) => (
+    <Provider store={ store }>
+        <BrowserRouter>
+            <div>
+                <Route path="/" exact component={Main}/>
+                <Route path="/about" component={Main}/>
+                <Route path="/topics" component={Main}/>
+            </div>
+        </BrowserRouter>
+    </Provider>
+)
+
+application.propTypes = {
+    store: PropTypes.object.isRequired
+}
+
+export default application

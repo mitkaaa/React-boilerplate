@@ -4,6 +4,7 @@ const chalk = require('chalk')
 const http = require('http')
 const express = require('express')
 const webpackMiddleware = require('webpack-dev-middleware')
+const webpackHotMiddleware = require('webpack-hot-middleware')
 const webpack = require('webpack')
 const moment = require('moment')
 const bodyParser =  require('body-parser')
@@ -36,7 +37,14 @@ module.exports = (config) => {
     if (app.get('env') === 'development') {
         // development env
         app.use(morgan('tiny'))
-        app.use(webpackMiddleware(webpack(config.webpackConfig), config.devServer))
+
+        /* *******************
+         webpack configuration
+         ******************* */
+
+        const compiler = webpack(config.webpackConfig)
+        app.use(webpackMiddleware(compiler, config.devServer))
+        app.use(webpackHotMiddleware(compiler))
     } else {
         // production env
         app.use(compression())
@@ -51,24 +59,24 @@ module.exports = (config) => {
 
     app.use(require(path.resolve(process.cwd(), config.serverPath)))
 
-    app.use(function(req, res, next) {
-        res.status(404)
-
-        // respond with html page
-        if (req.accepts('html')) {
-            res.render('404', { url: req.url })
-            return
-        }
-
-        // respond with json
-        if (req.accepts('json')) {
-            res.send({ error: 'Not found' })
-            return
-        }
-
-        // default to plain-text. send()
-        res.type('txt').send('Not found')
-    })
+    // app.use(function(req, res, next) {
+    //     res.status(404)
+    //
+    //     // respond with html page
+    //     if (req.accepts('html')) {
+    //         res.render('404', { url: req.url })
+    //         return
+    //     }
+    //
+    //     // respond with json
+    //     if (req.accepts('json')) {
+    //         res.send({ error: 'Not found' })
+    //         return
+    //     }
+    //
+    //     // default to plain-text. send()
+    //     res.type('txt').send('Not found')
+    // })
 
     // app.use(require('./libs/react-router'))
 
